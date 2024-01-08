@@ -40,12 +40,10 @@ void setup() {
 
 	pinMode(PICO_LED_PIN, OUTPUT);
 	digitalWrite(PICO_LED_PIN, 1);
-  // --------------------------------------------------------------------------
+
 	bg.enableColorCorrection(true);
 	matrix.addLayer(&bg);
 	matrix.setBrightness(255);
-
-	// Init the library and the matrix
 	matrix.begin();
 }
 
