@@ -52,6 +52,7 @@ void draw() {
   led.endDraw();
 
   image(led, 10, 10, TOTAL_WIDTH * 8, TOTAL_HEIGHT * 8);
+  image(led, TOTAL_WIDTH * 8 + 20, 10);
 
   // --------------------------------------------------------------------------
   // Write to the serial port (if open)
