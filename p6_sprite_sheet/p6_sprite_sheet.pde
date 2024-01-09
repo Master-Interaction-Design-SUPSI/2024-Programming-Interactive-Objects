@@ -1,6 +1,9 @@
 /**
- * This sketch sends all the pixels of the canvas to the serial port.
- * A helper function to scan all the serial ports for a configured controller is provided.
+ * This Processing sketch sends all the pixels of the canvas to the serial port.
+ * The pixel data is read out from a texture instead of the canvas; 
+ * this allows a better (bigger) preview...
+ * In this example a "sprite sheet" is loaded and all the frames are displayed 
+ * in sequence. 
  */
 
 import processing.serial.*;
