@@ -13,3 +13,6 @@
 .AppleDouble
 .LSOverride
 ._*
+
+# Processing
+sketch.properties
