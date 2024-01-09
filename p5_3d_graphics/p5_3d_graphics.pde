@@ -19,12 +19,12 @@ PGraphics led;
 void setup() {
   // The Processing preprocessor only accepts literal values for size()
   // We can't do: size(TOTAL_WIDTH, TOTAL_HEIGHT);
-  size(400, 300);
+  size(400, 300, P3D);
   
   noSmooth();
   
-  led = createGraphics(TOTAL_WIDTH, TOTAL_HEIGHT);
-  led.smooth(8);
+  led = createGraphics(TOTAL_WIDTH, TOTAL_HEIGHT, P3D);
+  
 
   buffer = new byte[TOTAL_WIDTH * TOTAL_HEIGHT * NUM_CHANNELS];
 
@@ -44,11 +44,16 @@ void setup() {
 }
 void draw() {
 
-  float x = sin(frameCount * 0.04) * 10 + TOTAL_WIDTH * 0.5;
-  float y = cos(frameCount * 0.13) * 10 + TOTAL_HEIGHT * 0.5;
+  
   led.beginDraw();
-  led.background(200, 0, 180);
-  led.ellipse(x, y, 10, 10);
+  led.background(0);
+  led.translate(led.width/2, led.height/2);
+  led.rotateX( frameCount * 0.022);
+  led.rotateY( frameCount * 0.033);
+  led.rotateZ( frameCount * 0.044);
+  led.fill(255,0,0);
+  led.box(16);
+  
   led.endDraw();
 
   image(led, 10, 10, TOTAL_WIDTH * 8, TOTAL_HEIGHT * 8);
