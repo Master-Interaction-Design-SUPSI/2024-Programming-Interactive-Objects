@@ -11,6 +11,9 @@ function setup() {
 
   port = createSerial();
 
+  try{"serial"in navigator?ports=navigator.serial.getPorts():"usb"in navigator&&(ports=serial.getPorts())}
+  catch(e){alert("To use the serial port from web you need to use Google Chrome")}
+  
   connectBtn = createButton('>');
   connectBtn.mousePressed(connectBtnClick);
 
@@ -22,7 +25,7 @@ function setup() {
 function draw() {
 
   background(0,0,0);
-  fill(100, 100, 100);
+  fill(30, 0, 30);
   let d = map(sin(frameCount * 0.1), -1, 1, 3, 30);
   ellipse(width / 2, height / 2, d, d);
 
