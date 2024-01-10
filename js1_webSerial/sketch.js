@@ -54,7 +54,7 @@ function connectBtnClick() {
     port.open(BAUD_RATE);
     connectBtn.html('x');
   } else {
-    connectBtn.html('>');
     port.close();
+    connectBtn.html('>');
   }
 }
