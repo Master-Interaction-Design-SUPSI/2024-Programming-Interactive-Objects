@@ -1,5 +1,6 @@
 let port;
 let connectBtn;
+let led;
 
 const TOTAL_WIDTH  = 32;
 const TOTAL_HEIGHT = 32;
@@ -7,7 +8,9 @@ const NUM_CHANNELS = 3;
 const BAUD_RATE    = 921600;
 
 function setup() {
-  createCanvas(TOTAL_WIDTH, TOTAL_HEIGHT);
+  createCanvas(400, 400);
+
+  led = createGraphics(TOTAL_WIDTH, TOTAL_HEIGHT);
 
   port = createSerial();
 
@@ -18,32 +21,37 @@ function setup() {
   connectBtn.mousePressed(connectBtnClick);
 
   noSmooth();
-  pixelDensity(1);
-  noStroke();
-  
+  led.pixelDensity(1);
+  led.noStroke();
+
   frameRate(20);
 }
 
 function draw() {
 
-  background(0,0,0);
-  fill(255, 255, 255);
-  let d = map(sin(frameCount * 0.1), -1, 1, 3, 30);
-  ellipse(width / 2, height / 2, d, d);
+  led.background(0);
+  led.fill(50);
+  let d = map(mouseX, 0, 400, 0, 32);
+  led.ellipse(led.width / 2, led.height / 2, d, d);
+
+  image(led, 10, 10, TOTAL_WIDTH * 10, TOTAL_HEIGHT * 10);
+  image(led, TOTAL_WIDTH * 10 + 20, 10, TOTAL_WIDTH, TOTAL_HEIGHT);
 
   // ----------------------------------------
   // Send Pixels data to the matrix; Do not edit these lines
   if (port.opened()){
     const buffer = new Uint8Array(TOTAL_WIDTH * TOTAL_HEIGHT * NUM_CHANNELS + 1);
     
-    loadPixels();
+    led.loadPixels();
+
+    console.log(led.pixels.length);
 
     var bufferIndex = 0;
 
-    for (let i = 0; i < pixels.length; i += 4) {
-          buffer[bufferIndex++] = pixels[i + 0];
-          buffer[bufferIndex++] = pixels[i + 1];
-          buffer[bufferIndex++] = pixels[i + 2];
+    for (let i = 0; i < led.pixels.length; i += 4) {
+          buffer[bufferIndex++] = led.pixels[i + 0];
+          buffer[bufferIndex++] = led.pixels[i + 1];
+          buffer[bufferIndex++] = led.pixels[i + 2];
     }
 
     port.write(42);      // The 'data' command
