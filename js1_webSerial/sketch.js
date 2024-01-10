@@ -30,7 +30,7 @@ function draw() {
   ellipse(width / 2, height / 2, d, d);
 
   // ----------------------------------------
-  // Send Pixels data to the matrix Do not edit these lines
+  // Send Pixels data to the matrix; Do not edit these lines
   if (port.opened()){
     const buffer = new Uint8Array(TOTAL_WIDTH * TOTAL_HEIGHT * NUM_CHANNELS + 1);
     
