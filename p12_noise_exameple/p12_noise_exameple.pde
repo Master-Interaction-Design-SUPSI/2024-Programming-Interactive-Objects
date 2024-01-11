@@ -57,7 +57,6 @@ void draw() {
   led.beginDraw();
   led.background(0);
   led.noStroke();
-
   for (int j=0; j<TOTAL_HEIGHT; j++) {
     for (int i=0; i<TOTAL_WIDTH; i++) {
       float n = noise(j * noise_scale + 0.9, i * noise_scale + 1.3, noise_z);
@@ -69,7 +68,6 @@ void draw() {
   }
 
   led.endDraw();
-
   image(led, 10, 10, TOTAL_WIDTH * 8, TOTAL_HEIGHT * 8);
   image(led, TOTAL_WIDTH * 8 + 20, 10);
 
